@@ -43,3 +43,43 @@ composer create-project yiisoft/yii2-app-basic basic
     `date_created` datetime NOT NULL,
     `date_updated` timestamp
     ) 
+
+# Change In View
+TypeError
+Argument 2 passed to yii\base\View::{closure}() must be an instance of Customer, instance of \app\models\Customer given
+
+'urlCreator' => function ($action, \app\models\Users $model, $key, $index, $column) {
+    return Url::toRoute([$action, 'id_user' => $model->id_user]);
+}
+
+// 'urlCreator' => function ($action, Users $model, $key, $index, $column) {
+    //     return Url::toRoute([$action, 'id_user' => $model->id_user]);
+//  }
+
+
+
+
+Move index File to Home
+
+
+Prettify Url
+
+
+Create .htacess File 
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)\?*$ index.php?r=$1 [L,QSA]
+
+
+Un commnet url Manager in D:\xampp\htdocs\basic\config\web.php file
+
+'urlManager' => [
+    'enablePrettyUrl' => true,
+    'showScriptName' => false,
+    'rules' => array(
+        '<controller:\w+>/<id:\d+>' => '<controller>/view',
+        '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+        '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+    ),
+],
